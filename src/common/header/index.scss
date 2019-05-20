@@ -1,0 +1,52 @@
+@import "../../assets/styles/variable";
+
+$height: 56px;
+
+nav {
+  min-height: 50px;
+  border: 1px solid $color-background-b;
+
+  a.logo {
+    float: left;
+    height: $height;
+
+    img {
+      height: 100%;
+    }
+  }
+
+  .menu {
+    float: left;
+    height: $height;
+    line-height: $height;
+    font-size: $font-size-large;
+
+    p {
+      display: inline-block;
+      padding: 0 20px;
+    }
+  }
+
+  .search {
+    float: left;
+    height: $height;
+    line-height: $height;
+
+    input {
+      width: 240px;
+      height: 38px;
+      border-radius: 50px;
+      padding: 0 40px 0 20px;
+      font-size: $font-size-medium;
+      background-color: $color-background-q;
+    }
+
+    .hot-search-box {
+      position: absolute;
+      background-color: #fff;
+      border-radius: 5px;
+      padding: 20px 20px 10px;
+      box-shadow: 0 0 8px rgba($color-text-b,.2);
+    }
+  }
+}
