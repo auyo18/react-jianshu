@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import TodoItem from './TodoItem'
+import axios from 'axios'
 
 class TodoList extends Component {
   constructor(props) {
@@ -10,6 +11,13 @@ class TodoList extends Component {
     }
   }
 
+  async componentDidMount() {
+    let {data} = await axios.get('./data.json')
+    this.setState(() => ({
+      list: data.data
+    }))
+  }
+
   render() {
     return (
         <div>
@@ -17,7 +25,7 @@ class TodoList extends Component {
               type="text"
               value={this.state.todo}
               onChange={this.changeInput}
-              onKeyDown={this.handleKeyDown}/>
+              onKeyDown={this.handleKeyDown} />
           <button onClick={this.handleClick}>提交</button>
           <div className="list">
             {
@@ -29,7 +37,7 @@ class TodoList extends Component {
   }
 
   getTodoItem = () => {
-    return this.state.list.map(item => <TodoItem key={item} item={item} deleteTodo={this.deleteTodo}/>)
+    return this.state.list.map(item => <TodoItem key={item} item={item} deleteTodo={this.deleteTodo} />)
   }
 
   changeInput = e => {
