@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import TodoItem from './TodoItem'
 
 class TodoList extends Component {
   constructor(props) {
@@ -9,30 +10,55 @@ class TodoList extends Component {
     }
   }
 
-  changeInput = (e) => {
-    this.setState({
-      todo: e.target.value
-    })
-  }
-  handleClick = () => {
-    this.setState({
-      todo: '',
-      list: [this.state.todo, ...this.state.list]
-    })
-  }
-
   render() {
     return (
         <div>
-          <input type="text" value={this.state.todo} onChange={this.changeInput}/>
+          <input
+              type="text"
+              value={this.state.todo}
+              onChange={this.changeInput}
+              onKeyDown={this.handleKeyDown}/>
           <button onClick={this.handleClick}>提交</button>
           <div className="list">
             {
-              this.state.list.map((item, index) => <p key={index}>{item}</p>)
+              this.getTodoItem()
             }
           </div>
         </div>
     )
+  }
+
+  getTodoItem = () => {
+    return this.state.list.map(item => <TodoItem key={item} item={item} deleteTodo={this.deleteTodo}/>)
+  }
+
+  changeInput = e => {
+    let todo = e.target.value
+    if (!todo) return
+    this.setState(() => ({
+      todo
+    }))
+  }
+  handleKeyDown = e => {
+    if (e.nativeEvent.keyCode !== 13) return
+    this.setList()
+  }
+  handleClick = () => {
+    this.setList()
+  }
+  setList = () => {
+    if (!this.state.todo) return
+    this.setState(state => ({
+      todo: '',
+      list: [state.todo, ...state.list]
+    }))
+  }
+  deleteTodo = index => {
+    let list = this.state.list.slice()
+    list.splice(index, 1)
+    this.setState(() => ({
+      list
+    }))
   }
 }
 
