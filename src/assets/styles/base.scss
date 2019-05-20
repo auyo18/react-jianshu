@@ -1,0 +1,37 @@
+@import "./variable";
+
+* {
+  box-sizing: border-box;
+}
+
+*:before, *:after {
+  box-sizing: border-box;
+}
+
+body {
+  font: $font-size-small 'PingFang SC', 'STHeitiSC-Light', 'Helvetica-Light', Arial, sans-serif, 'Droid Sans Fallback';
+  line-height: 1.5;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  background: $color-background;
+}
+
+a, body {
+  color: $color-text
+}
+
+.loading-container {
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+
+.slide-enter-active, .slide-leave-active {
+  transition: all .3s;
+}
+
+.slide-enter, .slide-leave-to {
+  transform: translate3d(100%, 0, 0);
+}

@@ -1,0 +1,26 @@
+// 颜色规范
+$color-background: white;
+$color-background-d: rgba(255, 255, 255, .3);
+$color-background-dd: rgba(255, 255, 255, .8);
+$color-background-l: rgba(0, 0, 0, .35);
+$color-background-b: #f4f4f4;
+$color-background-q: #eee;
+$color-background-q-o: rgba(200, 200, 200, .7);
+
+$color-text: #434343;
+$color-text-b: #000;
+$color-text-w: white;
+$color-text-l: #999;
+$color-text-d: #ddd;
+$color-theme: #ff3a39;
+$color-theme-d: rgba(0, 0, 0, .1);
+
+// 字体大小规范
+$font-size-small-s: 10px;
+$font-size-small: 12px;
+$font-size-medium: 14px;
+$font-size-medium-x: 16px;
+$font-size-large: 18px;
+$font-size-large-x: 22px;
+$font-size-large-xx: 26px;
+$font-size-large-xl: 32px;
