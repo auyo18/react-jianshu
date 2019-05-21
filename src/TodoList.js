@@ -11,7 +11,7 @@ class TodoList extends Component {
   }
 
   async componentDidMount() {
-    store.dispatch(actions.initList())
+    store.dispatch(actions.sagas())
   }
 
   render() {
@@ -21,7 +21,7 @@ class TodoList extends Component {
               type="text"
               value={this.state.inputValue}
               onChange={this.changeInput}
-              onKeyDown={this.handleKeyDown}/>
+              onKeyDown={this.handleKeyDown} />
           <button onClick={this.handleClick}>提交</button>
           <div className="list">
             {
@@ -39,7 +39,7 @@ class TodoList extends Component {
           key={this.state.list[i]}
           item={this.state.list[i]}
           index={i}
-          deleteTodo={this.deleteTodo}/>)
+          deleteTodo={this.deleteTodo} />)
     }
     return ret
   }

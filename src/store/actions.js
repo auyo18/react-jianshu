@@ -1,14 +1,10 @@
 import types from './types'
-import axios from "axios"
 
 const actions = {
-  initList() {
-    return async dispatch => {
-      let {data} = await axios.get('./data.json')
-      dispatch({
-        type: types.INIT_LIST,
-        list: data.data
-      })
+  initList(data) {
+    return {
+      type: types.INIT_LIST,
+      list: data
     }
   },
   changeInputValue(inputValue) {
@@ -26,6 +22,11 @@ const actions = {
     return {
       type: types.DELETE_TODO,
       index
+    }
+  },
+  sagas() {
+    return {
+      type: types.SAGAS
     }
   }
 }
