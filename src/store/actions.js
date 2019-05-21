@@ -1,32 +1,21 @@
 import types from './types'
 
 const actions = {
-  initList(data) {
+  changeValue(value) {
     return {
-      type: types.INIT_LIST,
-      list: data
+      type: types.CHANGE_VALUE,
+      value
     }
   },
-  changeInputValue(inputValue) {
+  setList() {
     return {
-      type: types.CHANGE_INPUT_VALUE,
-      inputValue
-    }
-  },
-  changeList() {
-    return {
-      type: types.CHANG_LIST
+      type: types.SET_LIST
     }
   },
   deleteTodo(index) {
     return {
       type: types.DELETE_TODO,
       index
-    }
-  },
-  sagas() {
-    return {
-      type: types.SAGAS
     }
   }
 }

@@ -1,22 +1,19 @@
 import types from './types'
 
 const defaultState = {
-  inputValue: '',
+  value: '',
   list: []
 }
 
 export default (state = defaultState, action) => {
-  let newState = {...state}
+  const newState = JSON.parse(JSON.stringify(state))
   switch (action.type) {
-    case types.INIT_LIST:
-      newState.list = action.list
+    case types.CHANGE_VALUE:
+      newState.value = action.value
       return newState
-    case types.CHANGE_INPUT_VALUE:
-      newState.inputValue = action.inputValue
-      return newState
-    case types.CHANG_LIST:
-      newState.list.push(newState.inputValue)
-      newState.inputValue = ''
+    case types.SET_LIST:
+      newState.list.unshift(newState.value)
+      newState.value = ''
       return newState
     case types.DELETE_TODO:
       newState.list.splice(action.index, 1)
