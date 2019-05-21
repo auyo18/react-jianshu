@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import axios from 'axios'
 import {connect} from "react-redux"
+import {getHotQueryAction} from "./store/actionCreators"
 import './index.scss'
 
 class Header extends Component {
@@ -35,7 +36,9 @@ class Header extends Component {
               <p>下载App</p>
             </div>
             <div className="search">
-              <input type="text" placeholder="搜索"/>
+              <input type="text" placeholder="搜索" onFocus={() => {
+                this.props.setHotQuery(this.props.hotQueryList)
+              }}/>
               <div className="hot-search-box" ref="hotSearchBox">
                 <p className="title">
                   <span className="left">热门搜索</span>
@@ -70,17 +73,16 @@ class Header extends Component {
 
 const mapStateToProps = state => {
   return {
-    focus: state.header.focus
+    hotQueryList: state.header.hotQueryList
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    handleClick() {
-      const action = {
-        type: 'CHANGE_FOCUS'
+    setHotQuery(list) {
+      if (!list.length) {
+        dispatch(getHotQueryAction())
       }
-      dispatch(action)
     }
   }
 }
