@@ -3,7 +3,7 @@
 $height: 56px;
 
 nav {
-  min-height: 50px;
+  height: $height;
   border: 1px solid $color-background-b;
 
   a.logo {
@@ -19,7 +19,7 @@ nav {
     float: left;
     height: $height;
     line-height: $height;
-    font-size: $font-size-large;
+    font-size: $font-size-medium-x;
 
     p {
       display: inline-block;
@@ -30,7 +30,7 @@ nav {
   .search {
     float: left;
     height: $height;
-    line-height: $height;
+    position: relative;
 
     input {
       width: 240px;
@@ -39,14 +39,70 @@ nav {
       padding: 0 40px 0 20px;
       font-size: $font-size-medium;
       background-color: $color-background-q;
+      transition: width .5s ease-out .1s;
+      margin-top: 8px;
+
+      &:focus {
+        width: 340px;
+
+        ~ .hot-search-box {
+          visibility: visible;
+          opacity: 1;
+        }
+      }
     }
 
     .hot-search-box {
       position: absolute;
+      top: 100%;
+      width: 250px;
       background-color: #fff;
+      color: $color-text-l;
       border-radius: 5px;
       padding: 20px 20px 10px;
-      box-shadow: 0 0 8px rgba($color-text-b,.2);
+      box-shadow: 0 0 8px rgba($color-text-b, .2);
+      visibility: hidden;
+      opacity: 0;
+
+      &:hover {
+        visibility: visible;
+        opacity: 1;
+      }
+
+      &:before {
+        content: '';
+        position: absolute;
+        bottom: 100%;
+        border: 12px solid transparent;
+        border-bottom-color: #eee;
+      }
+
+      .title {
+        overflow: hidden;
+        margin-bottom: 10px;
+        font-size: $font-size-medium;
+
+        .left {
+          float: left;
+        }
+
+        .right {
+          float: right;
+          cursor: pointer;
+        }
+      }
+
+      .content {
+        font-size: $font-size-small;
+
+        .item {
+          display: inline-block;
+          padding: 2px 6px;
+          border: 1px solid #ddd;
+          border-radius: 3px;
+          margin: 0 10px 10px 0;
+        }
+      }
     }
   }
 }
