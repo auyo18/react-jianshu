@@ -1,4 +1,5 @@
 import {getHotQuery} from "../../../api/search"
+import {fromJS} from 'immutable'
 import types from './actionTypes'
 
 export function getHotQueryAction() {
@@ -6,7 +7,7 @@ export function getHotQueryAction() {
     let {data} = await getHotQuery()
     dispatch({
       type: types.SET_HOT_QUERY,
-      list: data
+      list: fromJS(data)
     })
   }
 }

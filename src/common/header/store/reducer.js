@@ -1,20 +1,21 @@
 import types from './actionTypes'
+import {fromJS} from 'immutable'
 
-const defaultState = {
+const defaultState = fromJS({
   hotQueryList: [],
   count: 10,
-  page: 0
-}
+  page: 0,
+  totalPage: 0
+})
 
 export default (state = defaultState, action) => {
-  const newState = JSON.parse(JSON.stringify(state))
   switch (action.type) {
     case types.SET_HOT_QUERY:
-      newState.hotQueryList = action.list
-      return newState
+      let totalPage = Math.ceil(action.list.size / state.get('count'))
+      return state.set('hotQueryList', action.list).set('totalPage', totalPage)
     case types.CHANGE_PAGE:
-      newState.page = (newState.page + 1) % 4
-      return newState
+      let page = (state.get('page') + 1) % state.get('totalPage')
+      return state.set('page', page)
     default:
       return state
   }
