@@ -1,21 +1,17 @@
 import React, {Component} from 'react'
 import TodoItem from './TodoItem'
-import axios from 'axios'
+import store from './store'
+import actions from './store/actions'
 
 class TodoList extends Component {
   constructor(props) {
     super(props)
-    this.state = {
-      todo: '',
-      list: []
-    }
+    this.state = store.getState()
+    store.subscribe(this.handleChangeStore)
   }
 
   async componentDidMount() {
-    let {data} = await axios.get('./data.json')
-    this.setState(() => ({
-      list: data.data
-    }))
+    store.dispatch(actions.initList())
   }
 
   render() {
@@ -23,9 +19,9 @@ class TodoList extends Component {
         <div>
           <input
               type="text"
-              value={this.state.todo}
+              value={this.state.inputValue}
               onChange={this.changeInput}
-              onKeyDown={this.handleKeyDown} />
+              onKeyDown={this.handleKeyDown}/>
           <button onClick={this.handleClick}>提交</button>
           <div className="list">
             {
@@ -37,15 +33,21 @@ class TodoList extends Component {
   }
 
   getTodoItem = () => {
-    return this.state.list.map(item => <TodoItem key={item} item={item} deleteTodo={this.deleteTodo} />)
+    let ret = []
+    for (let i = this.state.list.length - 1; i >= 0; i--) {
+      ret.push(<TodoItem
+          key={this.state.list[i]}
+          item={this.state.list[i]}
+          index={i}
+          deleteTodo={this.deleteTodo}/>)
+    }
+    return ret
   }
 
   changeInput = e => {
-    let todo = e.target.value
-    if (!todo) return
-    this.setState(() => ({
-      todo
-    }))
+    let inputValue = e.target.value
+    if (!inputValue) return
+    store.dispatch(actions.changeInputValue(inputValue))
   }
   handleKeyDown = e => {
     if (e.nativeEvent.keyCode !== 13) return
@@ -55,18 +57,14 @@ class TodoList extends Component {
     this.setList()
   }
   setList = () => {
-    if (!this.state.todo) return
-    this.setState(state => ({
-      todo: '',
-      list: [state.todo, ...state.list]
-    }))
+    if (!this.state.inputValue) return
+    store.dispatch(actions.changeList())
   }
   deleteTodo = index => {
-    let list = this.state.list.slice()
-    list.splice(index, 1)
-    this.setState(() => ({
-      list
-    }))
+    store.dispatch(actions.deleteTodo(index))
+  }
+  handleChangeStore = () => {
+    this.setState(store.getState())
   }
 }
 
