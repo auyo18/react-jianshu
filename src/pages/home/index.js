@@ -1,11 +1,17 @@
-import React, {Component} from 'react'
+import React, {PureComponent} from 'react'
+import {connect} from "react-redux"
 import Topic from './components/Topic'
 import List from './components/List'
 import Recommend from './components/Recommend'
 import Writer from './components/Writer'
+import {getArticle} from "./store/actions"
 import './index.scss'
 
-class Home extends Component {
+class Home extends PureComponent {
+  componentDidMount() {
+    this.props.getArticle(this.props.articleList)
+  }
+
   render() {
     return (
         <div className="container">
@@ -29,4 +35,18 @@ class Home extends Component {
   }
 }
 
-export default Home
+const mapStateToProps = state => {
+  return {
+    articleList: state.getIn(['home', 'list'])
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    getArticle(list) {
+      !list.size && dispatch(getArticle())
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home)

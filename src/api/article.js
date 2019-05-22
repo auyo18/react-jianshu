@@ -6,3 +6,10 @@ export function getArticleList() {
     method: 'get'
   })
 }
+
+export function getMoreArticleList() {
+  return request({
+    url: '/moreArticleList.json',
+    method: 'get'
+  })
+}

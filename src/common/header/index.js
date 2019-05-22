@@ -1,5 +1,6 @@
 import React from 'react'
 import {connect} from "react-redux"
+import {Link} from "react-router-dom"
 import {getHotQueryAction, getChangePageAction} from "./store/actions"
 import './index.scss'
 
@@ -9,12 +10,12 @@ const Header = props => {
   return (
       <nav>
         <div className="container">
-          <a className="logo" href="/">
+          <Link className="logo" to="/">
             <img src="https://cdn2.jianshu.io/assets/web/nav-logo-4c7bbafe27adc892f3046e6978459bac.png" alt=""/>
-          </a>
+          </Link>
           <div className="menu">
-            <p><a href="/">首页</a></p>
-            <p><a href="/about">关于我们</a></p>
+            <p><Link to="/">首页</Link></p>
+            <p><Link to="/about">关于我们</Link></p>
           </div>
           <div className="search">
             <input type="text" placeholder="搜索" onFocus={() => {

@@ -10,10 +10,10 @@ function App() {
   return (
       <div className="App">
         <Provider store={store}>
-          <Header/>
           <BrowserRouter>
+            <Header/>
             <Route path='/' exact component={Home}/>
-            <Route path='/about' exact component={Detail}/>
+            <Route path='/detail' exact component={Detail}/>
           </BrowserRouter>
         </Provider>
       </div>

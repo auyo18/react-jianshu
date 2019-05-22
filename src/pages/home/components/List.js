@@ -1,12 +1,9 @@
-import React, {Component} from 'react'
+import React, {PureComponent} from 'react'
 import {connect} from "react-redux"
-import {getArticle} from "../store/actions"
+import {Link} from "react-router-dom"
+import {getMoreArticle} from "../store/actions"
 
-class List extends Component {
-  componentDidMount() {
-    this.props.getArticle()
-  }
-
+class List extends PureComponent {
   render() {
     return (
         <div className="article-list">
@@ -14,18 +11,25 @@ class List extends Component {
             this.props.articleList.map(item => (
                 <div className="item" key={item.get('_id')}>
                   <div className="content">
-                    <p className="title">{item.get('title')}</p>
+                    <Link to='/detail'>
+                      <p className="title">{item.get('title')}</p>
+                    </Link>
                     <p className="description">{item.get('description')}</p>
                     <p className="meta">
                       <span className="dot">{item.getIn(['category', 'name'])}</span>
                     </p>
                   </div>
                   <div className="img">
-                    <img src={`${item.get('thumbnail')}?imageView2/1/w/150/h/100/q/75|imageslim`} alt=""/>
+                    <Link to='/detail'>
+                      <img src={`${item.get('thumbnail')}?imageView2/1/w/150/h/100/q/75|imageslim`} alt=""/>
+                    </Link>
                   </div>
                 </div>
             ))
           }
+          <div className="more">
+            <p onClick={this.props.getMoreArticle}>阅读更多</p>
+          </div>
         </div>
     )
   }
@@ -39,8 +43,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getArticle() {
-      dispatch(getArticle())
+    getMoreArticle() {
+      dispatch(getMoreArticle())
     }
   }
 }

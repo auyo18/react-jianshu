@@ -22,7 +22,8 @@
 
       .item {
         position: relative;
-        padding: 20px 0;
+        padding: 0 0 20px 0;
+        margin-bottom: 20px;
         border-bottom: 1px solid $color-background-q;
 
         .content {
@@ -75,6 +76,24 @@
             width: 100%;
             border-radius: 5px;
             border: 1px solid $color-background-b;
+          }
+        }
+      }
+
+      .more {
+        cursor: pointer;
+
+        p {
+          text-align: center;
+          background-color: $color-text-l;
+          color: $color-background;
+          padding: 10px 0;
+          border-radius: 20px;
+          font-size: $font-size-medium-x;
+          transition: background-color .3s;
+
+          &:hover {
+            background-color: $color-text-l - 10;
           }
         }
       }

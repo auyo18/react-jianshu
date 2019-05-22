@@ -1,6 +1,6 @@
-import React, {Component} from 'react'
+import React, {PureComponent} from 'react'
 
-class Topic extends Component {
+class Topic extends PureComponent {
   render() {
     return (
         <div>~Topic~</div>
