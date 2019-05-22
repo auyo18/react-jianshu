@@ -3,7 +3,7 @@ import React, {Component} from 'react'
 class Detail extends Component {
   render() {
     return (
-        <div>Detail</div>
+        <div>{this.props.match.params.id}</div>
     )
   }
 }

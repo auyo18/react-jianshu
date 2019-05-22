@@ -11,7 +11,7 @@ class List extends PureComponent {
             this.props.articleList.map(item => (
                 <div className="item" key={item.get('_id')}>
                   <div className="content">
-                    <Link to='/detail'>
+                    <Link to={`/detail/${item.get('_id')}`}>
                       <p className="title">{item.get('title')}</p>
                     </Link>
                     <p className="description">{item.get('description')}</p>
@@ -20,7 +20,7 @@ class List extends PureComponent {
                     </p>
                   </div>
                   <div className="img">
-                    <Link to='/detail'>
+                    <Link to={`/detail/${item.get('_id')}`}>
                       <img src={`${item.get('thumbnail')}?imageView2/1/w/150/h/100/q/75|imageslim`} alt=""/>
                     </Link>
                   </div>
