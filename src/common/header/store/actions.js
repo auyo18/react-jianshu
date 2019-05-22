@@ -1,6 +1,6 @@
 import {getHotQuery} from "../../../api/search"
 import {fromJS} from 'immutable'
-import types from './actionTypes'
+import types from './types'
 
 export function getHotQueryAction() {
   return async dispatch => {

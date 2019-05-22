@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from "react-redux"
-import {getHotQueryAction, getChangePageAction} from "./store/actionCreators"
+import {getHotQueryAction, getChangePageAction} from "./store/actions"
 import './index.scss'
 
 const Header = props => {
@@ -10,16 +10,16 @@ const Header = props => {
       <nav>
         <div className="container">
           <a className="logo" href="/">
-            <img src="https://cdn2.jianshu.io/assets/web/nav-logo-4c7bbafe27adc892f3046e6978459bac.png" alt="" />
+            <img src="https://cdn2.jianshu.io/assets/web/nav-logo-4c7bbafe27adc892f3046e6978459bac.png" alt=""/>
           </a>
           <div className="menu">
-            <p>首页</p>
-            <p>下载App</p>
+            <p><a href="/">首页</a></p>
+            <p><a href="/about">关于我们</a></p>
           </div>
           <div className="search">
             <input type="text" placeholder="搜索" onFocus={() => {
               setHotQuery(hotQueryList)
-            }} />
+            }}/>
             <div className="hot-search-box">
               <p className="title">
                 <span className="left">热门搜索</span>
@@ -48,9 +48,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     setHotQuery(list) {
-      if (!list.length) {
-        dispatch(getHotQueryAction())
-      }
+      !list.size && dispatch(getHotQueryAction())
     },
     changeHotQuery() {
       dispatch(getChangePageAction())

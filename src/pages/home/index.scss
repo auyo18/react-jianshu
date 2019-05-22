@@ -1,0 +1,89 @@
+@import "../../assets/styles/variable";
+
+.home {
+  padding: 20px 0;
+
+  .main {
+    float: left;
+    width: 66%;
+
+    .banner {
+      border-radius: 10px;
+      overflow: hidden;
+      font-size: 0;
+
+      img {
+        width: 100%;
+      }
+    }
+
+    .article-list {
+      padding: 20px 0;
+
+      .item {
+        position: relative;
+        padding: 20px 0;
+        border-bottom: 1px solid $color-background-q;
+
+        .content {
+          padding-right: 165px;
+
+          .title {
+            font-size: $font-size-large;
+            font-weight: bold;
+            margin-bottom: 10px;
+          }
+
+          .description {
+            color: $color-text-l;
+            margin-bottom: 10px;
+          }
+
+          .meta {
+            .dot {
+              color: $color-text-l;
+              position: relative;
+              display: inline-block;
+              margin-left: 20px;
+
+              &:before {
+                content: '';
+                display: block;
+                position: absolute;
+                top: 50%;
+                left: -20px;
+                border-radius: 50px;
+                margin-top: -6px;
+                width: 12px;
+                height: 12px;
+                border: 3px solid $color-theme;
+              }
+            }
+          }
+
+        }
+
+        .img {
+          width: 150px;
+          position: absolute;
+          right: 0;
+          top: 50%;
+          margin-top: -50px;
+          font-size: 0;
+
+          img {
+            width: 100%;
+            border-radius: 5px;
+            border: 1px solid $color-background-b;
+          }
+        }
+      }
+    }
+  }
+
+  .aside {
+    float: left;
+    width: 34%;
+    padding-left: 20px;
+  }
+}

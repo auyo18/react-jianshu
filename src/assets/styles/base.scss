@@ -19,7 +19,19 @@ a, body {
   color: $color-text
 }
 
+img {
+  max-width: 100%;
+}
+
 .container {
-  width: 1190px;
+  width: 960px;
   margin: 0 auto;
+}
+
+.clear {
+  &:after {
+    content: '';
+    clear: both;
+    display: table;
+  }
 }
